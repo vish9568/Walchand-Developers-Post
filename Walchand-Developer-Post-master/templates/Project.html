@@ -1,0 +1,379 @@
+{% extends my_template %} {% block body %} {% if profile %}
+<script>
+  document.getElementById("myProfile").src = "{{profile.url}}";
+  console.log("{{profile}}");
+</script>
+{% endif %} {% if notifications %}
+<script>
+  document.getElementById("notification").innerText = "{{notifications}}";
+  //   console.log("{{profile}}");
+</script>
+{% endif %}
+
+<section id="container" class="">
+  <header class="page-header text-center" id="software-header">
+    <div class="row">
+      <div class="small-12 columns">
+        <h1 id="app-title">{{project.name}}</h1>
+
+        <p class="large">{{project.tag_line}}</p>
+      </div>
+    </div>
+
+    <!-- <div class="row">
+      <div class="small-12 columns">
+        <div class="software-likes">
+          <div data-like="base">
+            <a class="like-button button radius secondary" href="#">
+              <span class="ss-icon ss-heart"></span>
+              Like
+            </a>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </header>
+
+  <nav id="software-nav">
+    <div class="row">
+      <div class="large-12 columns">
+        <ul class="left no-bullet">
+          <li>
+            <h4>
+              <a class="active" href="/software/no-more-covid-confusion"
+                >Story</a
+              >
+            </h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <article id="app-details" class="content-section">
+    <div class="row">
+      <div class="large-9 columns" id="app-details-left">
+        <div id="gallery">
+          <ul data-slick="true">
+            <!-- <li>
+              <div class="flex-video">
+                <iframe
+                  type="text/html"
+                  width="660"
+                  height="371"
+                  src="https://www.youtube.com/embed/y1CqQM3eo-I?enablejsapi=1&amp;hl=en_US&amp;rel=0&amp;start=&amp;version=3&amp;wmode=transparent"
+                  allowfullscreen="allowfullscreen"
+                  frameborder="0"
+                  allowscriptaccess="always"
+                  webkitAllowFullScreen="true"
+                  wmode="transparent"
+                  mode="transparent"
+                  class="video-embed"
+                ></iframe>
+              </div>
+            </li> -->
+
+            <li class="text-center">
+              <a
+                data-lightbox="1498923"
+                data-title="{{project.tag_line}}"
+                href="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/498/923/datas/original.png"
+              >
+                <img
+                  alt="No More COVID Confusion! – screenshot 1"
+                  class="software_photo_image image-replacement"
+                  src="{{project.photo.url}}"
+                />
+              </a>
+              <!-- <span class="expand-tag"><i class="fas fa-expand"></i></span> -->
+              <p>
+                <i>{{project.tag_line}}</i>
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Domain</h3>
+          <p>{{project.domain}}</p>
+
+          <h3>Guide</h3>
+          <p>{{project.guide}}</p>
+
+          <h3>Year of Development</h3>
+          <p>{{project.year}}</p>
+
+          <h3>Sem</h3>
+          <p>{{project.sem}}</p>
+
+          <h3>Inspiration</h3>
+          <p>{{project.inspiration}}</p>
+
+          <h3>What it does</h3>
+
+          <p>{{project.what_it_does}}</p>
+
+          <!-- <p>
+            The user simply needs to snap a selfie of them wearing a mask to
+            ensure that they are wearing it properly before they head outside,
+            with 97% accuracy. If they have access to their lung CT scans, the
+            model can also classify COVID-19 with 99% accuracy.
+          </p> -->
+
+          <h3>How we built it</h3>
+
+          <p>{{project.how_we_build}}</p>
+
+          <!-- <p>
+            Models were trained in 6 hours(overnight) on Google Cloud AI
+            notebooks with 1 GPU accelerator and 4 Virtual CPUs.
+          </p> -->
+
+          <h3>Challenges we ran into</h3>
+
+          <p>{{project.challenges}}</p>
+
+          <h3>Accomplishments that we're proud of</h3>
+
+          <p>{{project.accomplishment}}</p>
+
+          <h3>What we learned</h3>
+
+          <p>{{project.we_learned}}</p>
+
+          <h3>What's next for {{project.name}}</h3>
+
+          <p>{{project.whats_next}}</p>
+          {% if project.github %}
+          <a href="{{project.github}}" target="_blank"
+            ><i class="fa fa-github fa-lg" aria-hidden="true"></i> Source
+            Code</a
+          >
+          {% endif %}
+          <br />
+          <br />
+
+          {% if project.hosted %}
+          <a href="{{project.hosted}}" target="_blank"
+            ><i class="fa fa-link fa-lg" aria-hidden="true"></i> Try It</a
+          >
+          {% endif %}
+        </div>
+
+        <!-- <div id="built-with" class="">
+          <h2>Built With</h2>
+
+          <ul class="no-bullet inline-list">
+            <li>
+              <span class="cp-tag recognized-tag"
+                ><a href="https://devpost.com/software/built-with/heroku"
+                  >heroku</a
+                ></span
+              >
+            </li>
+            <li>
+              <span class="cp-tag recognized-tag"
+                ><a href="https://devpost.com/software/built-with/pytorch"
+                  >pytorch</a
+                ></span
+              >
+            </li>
+            <li><span class="cp-tag">pytorch-lightning</span></li>
+            <li><span class="cp-tag">streamlit</span></li>
+          </ul>
+        </div> -->
+
+        <!-- <nav class="app-links section">
+          <h2>Try it out</h2>
+
+          <ul data-role="software-urls" class="no-bullet">
+            <li>
+              <a
+                target="_blank"
+                title="https://ruhacks2021.herokuapp.com/"
+                rel="nofollow"
+                href="https://ruhacks2021.herokuapp.com/"
+              >
+                <i class="ss-icon ss-link"></i>
+                <span>ruhacks2021.herokuapp.com</span>
+              </a>
+            </li>
+            <li>
+              <a
+                target="_blank"
+                title="https://github.com/ShaoA182739081729371028392/NoCOVIDConfusion"
+                rel="nofollow"
+                href="https://github.com/ShaoA182739081729371028392/NoCOVIDConfusion"
+              >
+                <i class="ss-icon ss-link"></i>
+                <span>github.com</span>
+              </a>
+            </li>
+          </ul>
+        </nav> -->
+      </div>
+
+      <!-- <aside class="large-3 columns" id="app-details-right">
+        <div id="submissions" class="section">
+          <h4 class="clearfix">Submitted to</h4>
+
+          <ul class="software-list-with-thumbnail">
+            <li>
+              <figure class="software-list-thumbnail challenge_avatar">
+                <a href="https://ru-hacks-2021.devpost.com/"
+                  ><img
+                    alt="image"
+                    class="thumbnail_image image-replacement"
+                    onerror="this.onerror=null;this.src=&#39;https://devpost-challengepost.netdna-ssl.com/assets/defaults/no-avatar-100-17cf519ce6f8e4e0e83758ea09fc5eb3.png&#39;;"
+                    src="//challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/001/489/339/datas/medium.png"
+                /></a>
+              </figure>
+
+              <div class="software-list-content">
+                <p>
+                  <a href="https://ru-hacks-2021.devpost.com/"
+                    >RU Hacks 2021: Digital</a
+                  >
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <section id="app-team">
+          <h4 class="clearfix">Created by</h4>
+
+          <ul class="no-bullet">
+            <li class="software-team-member" itemprop="member">
+              <div class="bubble">
+                <p>
+                  I worked on the BackEnd(MongoDB), FrontEnd(Heroku +
+                  Streamlit), and Machine Learning Model(PyTorch)
+                </p>
+              </div>
+
+              <div class="row">
+                <div class="small-2 large-4 columns">
+                  <figure>
+                    <a
+                      class="user-profile-link"
+                      href="https://devpost.com/ShaoA182739081729371028392"
+                      ><img
+                        alt="ShaoA182739081729371028392 Shao"
+                        class="software-member-photo user-photo facebook_avatar_image image-replacement"
+                        title="ShaoA182739081729371028392 Shao"
+                        onerror="this.onerror=null;this.src=&#39;https://devpost-challengepost.netdna-ssl.com/assets/defaults/no-avatar-100-17cf519ce6f8e4e0e83758ea09fc5eb3.png&#39;;"
+                        src="https://avatars.githubusercontent.com/u/77804746?height=180&amp;v=4&amp;width=180"
+                    /></a>
+                  </figure>
+                </div>
+
+                <div class="small-10 large-8 columns">
+                  <a
+                    class="user-profile-link"
+                    href="https://devpost.com/ShaoA182739081729371028392"
+                    >ShaoA182739081729371028392 Shao</a
+                  >
+                  <span
+                    class="follow-button-wrapper"
+                    data-context="software-detail"
+                    data-layout="condensed"
+                    data-follow-through-id="722101"
+                  ></span>
+
+                  <br />
+                  <small></small>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </aside> -->
+    </div>
+  </article>
+
+  <!-- <section id="share-and-like">
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="clearfix">
+          <div class="left">
+            <div class="software-likes">
+              <div data-like="base">
+                <a
+                  class="like-button button radius secondary"
+                  href="https://secure.devpost.com/users/register?flow%5Bdata%5D%5Bsoftware_id%5D=350074&amp;flow%5Bname%5D=like_software&amp;return_to=https%3A%2F%2Fdevpost.com%2Fsoftware%2Fno-more-covid-confusion"
+                >
+                  <span class="ss-icon ss-heart"></span>
+                  Like
+                </a>
+              </div>
+
+              <span class="like-counts"> </span>
+
+              <ul class="like-users inline-list"></ul>
+            </div>
+          </div>
+          <div class="right hide-for-small">
+            <div id="software-share" class="hide" data-add-this-buttons="true">
+              Share this project:
+
+              <ul class="h-nav clearfix inline-list" id="social-links">
+                <li id="promote-twitter">
+                  <div class="social-icon">
+                    <div
+                      class="addthis_32x32_style addthis_toolbox addthis_default_style"
+                      addthis:url="https://devpost.com/software/no-more-covid-confusion?utm_campaign=portfolio-share&amp;utm_medium=twitter&amp;utm_source=cp"
+                      addthis:title="Check out No More COVID Confusion!"
+                      addthis:description="https://devpost.com/software/no-more-covid-confusion"
+                    >
+                      <a
+                        class="addthis_button_twitter"
+                        tw:count="false"
+                        tw:counturl="https://devpost.com/software/no-more-covid-confusion"
+                        tw:url="https://devpost.com/software/no-more-covid-confusion?utm_campaign=portfolio-share&amp;utm_medium=twitter&amp;utm_source=cp"
+                        tw:via="Devpost"
+                        tw:text="Check out No More COVID Confusion!"
+                      >
+                      </a>
+                    </div>
+                  </div>
+                </li>
+
+                <li id="promote-fb-li">
+                  <div class="social-icon">
+                    <div
+                      class="addthis_32x32_style addthis_toolbox addthis_default_style"
+                      addthis:url="https://devpost.com/software/no-more-covid-confusion"
+                      addthis:title="No More COVID Confusion!"
+                      addthis:description=""
+                    >
+                      <div class="custom_images">
+                        <a
+                          class="addthis_button_facebook"
+                          fb:like:show_faces="false"
+                        >
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li id="promote-reddit-li">
+                  <div class="social-icon">
+                    <a
+                      class="addthis_32x32_style addthis_button_reddit"
+                      addthis:url="https://devpost.com/software/no-more-covid-confusion?utm_campaign=portfolio-share&amp;utm_medium=reddit&amp;utm_source=cp"
+                      addthis:title="No More COVID Confusion!"
+                    ></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  {% endblock %}
+</section>

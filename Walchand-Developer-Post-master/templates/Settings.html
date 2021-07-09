@@ -1,0 +1,331 @@
+{% extends my_template %} {% block body %} {% if profile %}
+<script>
+  document.getElementById("myProfile").src = "{{profile.url}}";
+  console.log("{{profile}}");
+</script>
+{% endif %}
+
+<section id="container" class="">
+  <header class="page-header">
+    <div class="row">
+      <div class="small-12 columns">
+        <h1>Edit your settings</h1>
+      </div>
+    </div>
+  </header>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <div id="settings-container" class="clearfix">
+        <!-- <nav id="settings-navigation">
+                    <h6>Portfolio</h6>
+                    <ul>
+                        <li class="active"><a href="/settings">Profile info</a></li>
+                    </ul>
+
+                    <h6>Hackathon Recommendations</h6>
+                    <ul>
+                        <li class=""><a href="/settings/preferences_and_eligibility">Preferences &amp; Eligibility</a>
+                        </li>
+                    </ul>
+
+                    <h6>Account Management</h6>
+                    <ul>
+                        <li class=""><a href="/settings/notifications">Email notifications</a></li>
+                        <li class=""><a href="/settings/account">Account &amp; privacy</a></li>
+                        <li class=""><a href="/settings/password">Password</a></li>
+                    </ul>
+                </nav> -->
+
+        <article id="settings-main">
+          <div class="introduction">
+            <h1>Profile info</h1>
+            <p>This information will appear on your public Walchand Developer Post profile.</p>
+          </div>
+
+          <div id="user-photo" class="clearfix">
+            <label>Photo</label>
+
+            <figure id="current-avatar">
+              <img
+                id = "profile_image"
+                alt="image"
+                class="user-photo facebook_avatar_image image-replacement"
+                src="{{profile.url}}"
+              />
+            </figure>
+            <!-- <form method = "post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit">Upload</button>
+          </form> -->
+
+            <form
+              id="settings-avatar-form"
+              novalidate="novalidate"
+              class="simple_form new_user_photo"
+              enctype="multipart/form-data"
+              action="{% url 'save_changes' %}"
+              accept-charset="UTF-8"
+              method="post"
+            >
+              <input name="utf8" type="hidden" value="&#x2713;" /><input
+                type="hidden"
+                name="authenticity_token"
+                value="#"
+              />
+              <div id="user_photo_block">
+                <label for="user_photo_file" id="change_photo_label">
+                  <!-- <span>
+                      Upload Photo
+                    </span>
+                  <input type="file" name='profile'>
+                  {% for fm in image_field %}
+    {{fm.label_tag}}{{fm}}<br><br>
+{% endfor %} -->
+                
+                  <!-- <div class="input file optional user_photo_data">
+                    <input
+                      id="user_photo_file"
+                      class="file optional hide"
+                      type="file"
+                      name="user_photo[data]"
+                    />
+                   
+                  </div> -->
+                </label>
+              </div>
+
+              <!-- <noscript>
+                <div>
+                  <input type="submit" name="commit" value="Upload" />
+                </div>
+              </noscript> -->
+            <!-- </form>
+            <form
+              id="form_avatar_upload"
+              class="no_ajax"
+              action="{% url 'save_changes' %}"
+              accept-charset="UTF-8"
+              method="post"
+            > -->
+            {% csrf_token %}
+              <!-- <input name="utf8" type="hidden" value="&#x2713;" /><input
+                type="hidden"
+                name="authenticity_token"
+                value="Pj19jUJQwReS0Epg1YNCs9uN3Fw3xZ+KUjUplzWd8CygajSMBRZzeAky4i5bB95kBtX6Wf4LHjiHAdYGFX952w=="
+              />
+              <input type="hidden" name="format" id="format" value="js" />
+            </form> -->
+            <iframe
+              width="1"
+              height="1"
+              name="upload_frame"
+              style="display: none"
+            ></iframe>
+          </div>
+
+          <div id="user-settings">
+            <!-- <form
+              data-user-form="base"
+              novalidate="novalidate"
+              class="simple_form edit_user"
+              id="edit_user_2045559"
+              action="{% url 'save_changes' %}"
+              accept-charset="UTF-8"
+              method="post"
+            > -->
+              
+              <input name="utf8" type="hidden" value="&#x2713;" /><input
+                type="hidden"
+                name="_method"
+                value="patch"
+              /><input
+                type="hidden"
+                name="authenticity_token"
+                value="y95fU3kQAUppdKDxD3jeF50gr/82hGPV98iFKfi5dZJViRZSPlazJfKWCL+B/ELAQHiJ+v9K4mci/Hq42Fv8ZQ=="
+              />
+              <div class="small-12 large-6 columns">
+                <div class="input string optional user_first_name">
+                  <label
+                    class="string optional control-label"
+                    for="user_first_name"
+                    >Choose Profile picture</label
+                  ><input
+                    class="string optional"
+                    type="file"
+                    value="{{profile.image}}"
+                    name="image"
+                    accept="image/*"
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="small-12 large-6 columns">
+                  <div class="input string optional user_first_name">
+                    <label
+                      class="string optional control-label"
+                      for="user_first_name"
+                      >First name</label
+                    ><input
+                      class="string optional"
+                      type="text"
+                      value="{{first_name}}"
+                      name="first_name"
+                      id="user_first_name"
+                    />
+                  </div>
+                </div>
+
+                <div class="small-12 large-6 columns">
+                  <div class="input string optional user_last_name">
+                    <label
+                      class="string optional control-label"
+                      for="user_last_name"
+                      >Last name</label
+                    ><input
+                      class="string optional"
+                      type="text"
+                      value="{{last_name}}"
+                      name="last_name"
+                      id="user_last_name"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="input string optional user_user_setting_tagline">
+                <label
+                  class="string optional control-label"
+                  for="user_user_setting_attributes_tagline"
+                  >Bio</label
+                ><input
+                  data-maxlength="140"
+                  data-maxlength-message="Your bio must be %s characters or less."
+                  data-trigger="change keyup"
+                  class="string optional"
+                  type="text"
+                  name="user[user_setting_attributes][tagline]"
+                  id="user_user_setting_attributes_tagline"
+                />
+              </div> -->
+
+              <h2>Social</h2>
+
+              <div class="row">
+                <div class="small-12 large-6 columns">
+                  <label
+                    class="control-label"
+                    for="user_user_setting_attributes_github_login"
+                    >GitHub</label
+                  >
+
+                  <div class="row collapse">
+                    <div class="small-1 columns">
+                      <span class="prefix">@</span>
+                    </div>
+
+                    <div class="small-11 columns">
+                      <input
+                        type="text"
+                        name="github"
+                        id="user_user_setting_attributes_github_login"
+                        value=""
+                      />
+                      <script>
+                          if("{{github}}")
+                            document.getElementById("user_user_setting_attributes_github_login").value = '{{github}}';
+
+                      </script>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="small-12 large-6 columns">
+                  <div class="input string optional user_user_setting_linkedin">
+                    <label
+                      class="string optional control-label"
+                      for="user_user_setting_attributes_linkedin"
+                      >LinkedIn</label
+                    ><input
+                      class="string optional"
+                      placeholder="e.g., https://www.linkedin.com/in/yourname"
+                      type="text"
+                      name="linkedin"
+                      id="user_user_setting_attributes_linkedin"
+                      value=""
+                    />
+                    <script>
+                        if("{{linkedin}}")
+                          document.getElementById("user_user_setting_attributes_linkedin").value = '{{linkedin}}';
+
+                    </script>
+                  </div>
+                </div>
+
+                <!-- <div class="small-12 large-6 columns">
+                  <label
+                    class="control-label"
+                    for="user_user_setting_attributes_twitter"
+                    >Twitter</label
+                  >
+
+                  <div class="row collapse">
+                    <div class="small-1 columns">
+                      <span class="prefix">@</span>
+                    </div>
+
+                    <div class="small-11 columns">
+                      <input
+                        type="text"
+                        name="user[user_setting_attributes][twitter]"
+                        id="user_user_setting_attributes_twitter"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="small-12 large-6 columns">
+                  <div class="input string optional user_user_setting_website">
+                    <label
+                      class="string optional control-label"
+                      for="user_user_setting_attributes_website"
+                      >Website</label
+                    ><input
+                      class="string optional"
+                      placeholder="e.g., http://www.example.com"
+                      type="text"
+                      name="user[user_setting_attributes][website]"
+                      id="user_user_setting_attributes_website"
+                    />
+                  </div>
+                </div> -->
+              </div>
+              <input
+                type="hidden"
+                value="2066527"
+                name="user[user_setting_attributes][id]"
+                id="user_user_setting_attributes_id"
+              />
+
+              <input
+                type="submit"
+                name="commit"
+                value="Save changes"
+                class="button radius"
+              />
+
+              <a class="button grey radius" href="#">
+                Cancel
+              </a>
+            </form>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,218 @@
+{% extends my_template %} {% block body %} {% if profile %}
+<script>
+  document.getElementById("myProfile").src = "{{profile.url}}";
+  document.getElementById("myProfile1").src = "{{profile.url}}";
+  console.log("{{profile}}");
+</script>
+{% endif %}
+<header id="portfolio-header">
+  <div
+    id="portfolio-cover"
+    class="user-background-color user-background-image"
+  ></div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div id="portfolio-user">
+        <div id="portfolio-user-photo">
+          <img id = "myProfile1" alt="{{name}}";s avatar" class="user-photo
+          gravatar_image image-replacement" src="{{profile.url}}" />
+          <div>
+            <a
+              class="button small radius edit-settings-btn"
+              href="{% url 'settings' %}"
+              >Edit info &amp; settings</a
+            >
+            <a
+              class="button small radius secondary add-project-btn"
+              data-reveal-id="hackathon-picker"
+              href="{% url 'add_project' %}"
+              >Add a new project</a
+            >
+            <div
+              id="hackathon-picker"
+              class="reveal-modal small"
+              data-reveal
+              data-hackathon-picker
+            >
+              <a class="close-reveal-modal close-reveal-modal-x">&#215;</a>
+              <div data-region="yes-no"></div>
+              <div data-region="hackathon-picker"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="portfolio-user-info">
+          <h1 id="portfolio-user-name">
+            {{name}}
+            <small>({{username}})</small>
+          </h1>
+
+          <p class="large" id="portfolio-user-bio">
+            <i></i>
+          </p>
+          <div class="expandable expandable-closed expandable-small-only">
+            <div class="expandable-content">
+              <!-- <ul class="inline-list" id="portfolio-user-links">
+                <li>
+                  <a
+                    href="https://devpost.com/settings/preferences_and_eligibility#address-section"
+                  >
+                    <span class="ss-icon ss-location"></span>
+                    India
+                    <i class="fas fa-pen" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ul> -->
+
+              <div class="clearfix tag-list">
+                <span class="cp-tag-heading left">
+                  <a
+                    href="https://devpost.com/settings/preferences_and_eligibility#skills-section"
+                  >
+                    <strong>Skills</strong>
+                    <i class="fas fa-pen" aria-hidden="true"></i>
+                  </a>
+                </span>
+
+                <!-- <ul class="portfolio-tags no-bullet inline-list">
+                  <li>
+                    <span class="cp-tag recognized-tag"
+                      ><a href="https://devpost.com/software/built-with/django"
+                        >django</a
+                      ></span
+                    >
+                  </li>
+                  <li>
+                    <span class="cp-tag recognized-tag"
+                      ><a href="https://devpost.com/software/built-with/python"
+                        >python</a
+                      ></span
+                    >
+                  </li>
+                  <li>
+                    <span class="cp-tag recognized-tag"
+                      ><a
+                        href="https://devpost.com/software/built-with/solidity"
+                        >solidity</a
+                      ></span
+                    >
+                  </li>
+                </ul> -->
+              </div>
+
+              <div class="tag-list themes clearfix">
+                <!-- <span class="cp-tag-heading left">
+                  <a
+                    href="https://devpost.com/settings/preferences_and_eligibility#interests-section"
+                  >
+                    <strong>Interests</strong>
+                    <i class="fas fa-pen" aria-hidden="true"></i>
+                  </a>
+                </span>
+
+                <ul class="no-bullet inline-list">
+                  <li>
+                    <span class="cp-tag recognized-tag">
+                      <a href="https://devpost.com/c/blockchain">Blockchain</a>
+                    </span>
+                  </li>
+                </ul> -->
+              </div>
+
+              <p>
+                <a href="/settings">Add your bio.</a>
+              </p>
+            </div>
+
+            <a href="#" class="expandable-toggle">
+              <i class="ss-navigatedown ss-icon"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section-dark">
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="clearfix">
+        <nav id="portfolio-navigation">
+          <ul>
+            <li class="active">
+              <a href="#">
+                <div class="totals"><span>{{len}}</span></div>
+                Projects
+              </a>
+            </li>
+            <!--          <li class=""><a href="/vishaljadhav9568/challenges"><div class="totals"><span>0</span></div> Hackathons</a></li>-->
+            <!--          <li class=""><a href="/vishaljadhav9568/achievements"><div class="totals"><span>1</span></div> Achievement</a></li>-->
+            <!--          <li class="" data-followers-tab="true"><a href="/vishaljadhav9568/followers"><div class="totals"><span>0</span></div> Followers</a></li>-->
+
+            <!--          <li class=""><a href="/vishaljadhav9568/following"><div class="totals"><span>0</span></div> Following</a></li>-->
+            <!--          <li class=""><a href="/vishaljadhav9568/likes"><div class="totals"><span>0</span></div> Likes</a></li>-->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="row software-row">
+    {% for project in projects %}
+    <div
+      class="large-3 small-12 columns gallery-item"
+      data-software-id="238764"
+    >
+      <a
+        class="block-wrapper-link fade link-to-software"
+        href="{% url 'single_project' project.id project.name|slugify %}"
+      >
+        <div
+          class="software-entry gallery-entry fade visible"
+          id="software_238764"
+        >
+          <figure>
+            <img
+              alt=""
+              class="software_thumbnail_image image-replacement"
+              onerror="this.onerror=null;this.src=&#39;https://devpost-challengepost.netdna-ssl.com/assets/defaults/thumbnail-placeholder-42bcab8d8178b413922ae2877d8b0868.gif&#39;;"
+              src="{{project.photo.url}}"
+            />
+
+            <figcaption>
+              <div class="software-entry-name entry-body">
+                <h5>{{project.name}}</h5>
+
+                <p class="small tagline">{{project.tag_line}}</p>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- cache end -->
+
+          <footer>
+            <!-- <div class="small members ">
+              <span nested_link="true" class="user-profile-link" data-nested-link="true"
+                data-url="https://devpost.com/smayorquin"><img alt="Salma Mayorquin"
+                  class="user-photo photo_image image-replacement" title="smayorquin"
+                  onerror="this.onerror=null;this.src=&#39;https://devpost-challengepost.netdna-ssl.com/assets/defaults/no-avatar-100-17cf519ce6f8e4e0e83758ea09fc5eb3.png&#39;;"
+                  src="//challengepost-s3-challengepost.netdna-ssl.com/photos/production/user_photos/000/906/182/datas/small.png" /></span>
+              <span nested_link="true" class="user-profile-link" data-nested-link="true"
+                data-url="https://devpost.com/terryjrodriguez"><img alt="Terry Rodriguez"
+                  class="user-photo facebook_avatar_image image-replacement" title="terryjrodriguez"
+                  onerror="this.onerror=null;this.src=&#39;https://devpost-challengepost.netdna-ssl.com/assets/defaults/no-avatar-100-17cf519ce6f8e4e0e83758ea09fc5eb3.png&#39;;"
+                  src="https://media.licdn.com/dms/image/C5603AQFwzGqGmT9H5A/profile-displayphoto-shrink_800_800/0?e=1559174400&amp;t=yywUUjCVjoq5Fdrf_4z1Lt24eELG4ufbqyr1K8It7o4&amp;type=square&amp;v=beta" /></span>
+              
+
+            </div> -->
+            Staus: "{{verified}}"
+          </footer>
+        </div></a
+      >
+    </div>
+
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

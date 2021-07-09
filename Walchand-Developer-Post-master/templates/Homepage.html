@@ -1,0 +1,41 @@
+{% extends my_template %} {% block body %} {% if profile %}
+<script>
+  document.getElementById("myProfile").src = "{{profile.url}}";
+  console.log("{{profile}}");
+</script>
+{% endif %} {% if notifications %}
+<script>
+  document.getElementById("notification").innerText = "{{notifications}}";
+  //   console.log("{{profile}}");
+</script>
+{% endif %}
+<div data-homepage-header="true">
+  <header id="homepage-header" class="new">
+    <div class="row collapse">
+      <div class="small-12 columns">
+        <div class="pt-5 header-min-height">
+          <div class="mission-statement pb-5">
+            <h1 class="large">The home for Projects</h1>
+            <h3 class="large mb-5">
+              Build projects, practice skills, learn technologies, and Do
+              contribute.
+            </h3>
+
+            <a class="button large radius is-marginless"
+              >Join the community of Devlopers in Walchand</a
+            >
+          </div>
+          <div class="illustration" style="background-color: black">
+            <!-- <img
+              class="desktop"
+              src="../media/Homepage1.jpg"
+              alt="Desktop illustration placeholder"
+            /> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
+{%endblock%}

@@ -1,0 +1,204 @@
+{% extends my_template %} 
+{% block css %}
+  ul{
+      background-color:black;
+      display: inline;
+    }
+    {% endblock %}
+{% block body %} {% if profile %}
+
+<script>
+  document.getElementById("myProfile").src = "{{profile.url}}";
+  console.log("{{profile}}");
+</script>
+{% endif %}
+<script>
+  const acceArray = [];
+</script>
+
+
+<div class="content-section">
+  <div class="row">
+    <div class="small-12 large-9 columns">
+      <form method="post" enctype="multipart/form-data" class="row" id="form_project" action="{% url 'add_project'%}">
+        {% csrf_token %}
+        <div>
+          <label>Name of the project: </label>
+          {{form.name}}
+        </div>
+        <div>
+          <label>TagLine of the project: </label>
+          {{form.tag_line}}
+        </div>
+        <div>
+          <label>Photo of the project: </label>
+          {{form.photo}}
+        </div>
+        <div>
+          <label>Year Of Development: </label>
+          {{form.year}}
+        </div>
+        <div>
+          <label>Mini Project </label>
+          {{form.sem}}
+        </div>
+        <div class="d-inline">
+          <label>Batch </label>
+          {{form.batch}}
+        </div>
+        <br>
+        <div>
+          <label>Guides: </label>
+          {{form.guide}}
+        </div>
+        <div>
+          <label>Domain: </label>
+          {{form.domain}}
+        </div>
+        <div>
+          <label>Inspiration: </label>
+          {{form.inspiration}}
+        </div>
+        <div>
+          <label>What it Does: </label>
+          {{form.what_it_does}}
+        </div>
+        <div>
+          <label>How we built: </label>
+          {{form.how_we_build}}
+        </div>
+        <div>
+          <label>Challenges we ran into: </label>
+          {{form.challenges}}
+        </div>
+        <div>
+          <label>Accomplishments: </label>
+          {{form.accomplishment}}
+        </div>
+        <div>
+          <label>What we Learned: </label>
+          {{form.we_learned}}
+        </div>
+        <div>
+          <label>What's next: </label>
+          {{form.whats_next}}
+        </div>
+        <div>
+          <label>GitHub Link: </label>
+          {{form.github}}
+        </div>
+        <div>
+          <label>Hosted Link: </label>
+          {{form.hosted}}
+        </div>
+        
+        <!-- {{ form.as_ul }} -->
+
+        <!-- <label for="data1">Guide</label>
+        <input list="data1" name = "teacher">
+
+               <datalist id = "data1">
+          {% for i in guides %}
+            <option value="{{i}}">
+          {% endfor %}
+        </datalist>
+        <br>
+        <br> -->
+        <!-- <input type="button" onclick="document.forms[0].submit()"/> -->
+        <button onclick="project_form()" type="submit" name="new_project">Upload</button>
+        <script>
+          function project_form()
+          {
+            // document.getElementById("form_project").action = ;
+            document.getElementById("form_project").submit();
+          }
+        </script>
+      </form>
+      </div>
+  </div>
+    </div>
+    <!--<form action="" method="post" enctype="multipart/form-data" novalidate>-->
+    <!--    {% csrf_token %}-->
+    <!--    <div class="row col-12 email-form">-->
+    <!--        <div class="form">-->
+    <!--            <div class="field first-name">-->
+    <!--                <div class="input string optional user_first_name"><label-->
+    <!--                        class="string optional control-label white-label"-->
+    <!--                        for="user_first_name">-->
+    <!--&lt;!&ndash;                        {% for fm in form %}&ndash;&gt;-->
+    <!--&lt;!&ndash;                        {{fm.label_tag}}{{fm}}&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <p class="er">{{fm.errors|striptags}}&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </p><br><br>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        {% endfor %}&ndash;&gt;-->
+    <!--                    {{ form.as_p }}-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; <div class="field last-name">-->
+    <!--                <div class="input string optional user_last_name"><label-->
+    <!--                        class="string optional control-label white-label" for="user_last_name">Last-->
+    <!--                        name</label><input data-required="true" data-maxlength="40"-->
+    <!--                        data-trigger="focusout" class="string optional" placeholder="Last name"-->
+    <!--                        type="text" value="" name="user[last_name]" id="user_last_name" /></div>-->
+    <!--            </div>-->
+
+    <!--            <div class="field email">-->
+    <!--                <div class="input email optional user_email"><label-->
+    <!--                        class="email optional control-label white-label"-->
+    <!--                        for="user_email">Email</label><input data-type="email" data-required="true"-->
+    <!--                        data-trigger="focusout" class="string email optional"-->
+    <!--                        placeholder="Your email address" type="email" name="user[email]"-->
+    <!--                        id="user_email" />-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            <div class="field password">-->
+    <!--                <div class="input password optional user_password"><label-->
+    <!--                        class="password optional control-label white-label"-->
+    <!--                        for="user_password">Password</label><input data-minlength="8"-->
+    <!--                        data-required="true" class="password optional" placeholder="Choose a password"-->
+    <!--                        type="password" name="user[password]" id="user_password" /></div>-->
+    <!--            </div>-->
+
+    <!--&ndash;&gt;-->
+    <!--{% if messages %}-->
+    <!--{% for message in messages %}-->
+    <!--{% if message.tags %}class="{{message.tags}}"{% endif %}-->
+    <!--<script>-->
+
+    <!--&lt;!&ndash;if("{{ message }}" == "Account Created Successfully !!")&ndash;&gt;-->
+    <!--alert("{{ message }}");-->
+
+    <!--</script>-->
+    <!--{% endfor %}-->
+    <!--{% endif %}-->
+
+    <!--            -->
+    <!--                &lt;!&ndash; <div class="button reimagine-button login-button">-->
+    <!--                    <i class="far fa-envelope"></i>-->
+    <!--                    <input type="submit" value="submit"> </input>-->
+    <!--                </div>-->
+
+    <!--            -->
+    <!--            <input type="submit" value="Signup"> &ndash;&gt;-->
+    <!--            <div class="field button-container">-->
+    <!--                &lt;!&ndash; <input type="submit" value="submit"> &ndash;&gt;-->
+    <!--                <button id="submit-form" class="button reimagine-button login-button" type="submit" value="submit">-->
+
+    <!--                    <i class="far fa-envelope"></i> Add Project-->
+    <!--                </button>-->
+    <!--            </div>-->
+
+    <!--            <div class="action bottom-section">-->
+
+    <!--                <p>-->
+    <!--                 Back to  <a href="/" >Walchand Developer post</a>-->
+    <!--                </p>-->
+    <!--              </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</form>-->
+
+    {% endblock %}
+  </div>
+</div>

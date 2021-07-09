@@ -1,0 +1,119 @@
+{% extends my_template %} {% block body %} {% if profile %}
+<script>
+  document.getElementById("myProfile").src = "{{profile.url}}";
+  console.log("{{profile}}");
+</script>
+{% endif %} {% if notifications %}
+<script>
+  document.getElementById("notification").innerText = "{{notifications}}";
+  //   console.log("{{profile}}");
+</script>
+{% endif %}
+
+
+{% block style %} 
+  <style>
+    .page-header{
+      background-color: #003e54;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      color: white;
+    }
+  </style>
+{% endblock %}
+
+
+
+  <section id="container" class>
+    <header class="page-header">
+      <div class="row">
+        <div class="large-9 columns">
+          <h1 id="gallery-title" class="shrink">
+            Explore projects 
+          </h1>
+        </div>
+
+        <div class="large-3 columns">
+
+          <a class="button radius secondary" id="add-your-software"
+            href="{% url 'add_project' %}">
+            Add your project
+          </a>
+        </div>
+      </div>
+    </header>
+
+
+
+    <div class="section-dark module-section">
+      <div class="software-module module" id="staff-picks-software-module">
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="section-title bold">
+              <h4 class="subheader section-title-left">
+                {{info}}
+              </h4>
+              <span class="section-title-line"></span>
+              <span class="section-title-right">
+                <a class="button radius tiny" href="#">View all</a>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row software-row">
+          {% for project in projects %}
+          <div class="large-3 small-12 columns gallery-item">
+            <a class="block-wrapper-link fade link-to-software" href="{% url 'single_project' project.id project.name|slugify %}">
+              <div class="software-entry gallery-entry fade visible">
+                <figure>
+                  <img alt="" class="software_thumbnail_image image-replacement"
+                    onerror="this.onerror=null;this.src=&#39;https://devpost-challengepost.netdna-ssl.com/assets/defaults/thumbnail-placeholder-42bcab8d8178b413922ae2877d8b0868.gif&#39;;"
+                    src="{{project.photo.url}}"/>
+
+                  <figcaption>
+                    <div class="software-entry-name entry-body">
+
+                      <h5>
+                        {{project.name}}
+                      </h5>
+
+                      <p class="small tagline">
+                        {{project.tagline}}
+                      </p>
+                    </div>
+                  </figcaption>
+                </figure>
+
+
+
+
+                <!-- cache end -->
+
+                <footer>
+                  <!-- <div class="small members ">
+                    <span nested_link="true" class="user-profile-link" data-nested-link="true"
+                      data-url="https://devpost.com/smayorquin"><img alt="Salma Mayorquin"
+                        class="user-photo photo_image image-replacement" title="smayorquin"
+                        onerror="this.onerror=null;this.src=&#39;https://devpost-challengepost.netdna-ssl.com/assets/defaults/no-avatar-100-17cf519ce6f8e4e0e83758ea09fc5eb3.png&#39;;"
+                        src="//challengepost-s3-challengepost.netdna-ssl.com/photos/production/user_photos/000/906/182/datas/small.png" /></span>
+                    <span nested_link="true" class="user-profile-link" data-nested-link="true"
+                      data-url="https://devpost.com/terryjrodriguez"><img alt="Terry Rodriguez"
+                        class="user-photo facebook_avatar_image image-replacement" title="terryjrodriguez"
+                        onerror="this.onerror=null;this.src=&#39;https://devpost-challengepost.netdna-ssl.com/assets/defaults/no-avatar-100-17cf519ce6f8e4e0e83758ea09fc5eb3.png&#39;;"
+                        src="https://media.licdn.com/dms/image/C5603AQFwzGqGmT9H5A/profile-displayphoto-shrink_800_800/0?e=1559174400&amp;t=yywUUjCVjoq5Fdrf_4z1Lt24eELG4ufbqyr1K8It7o4&amp;type=square&amp;v=beta" /></span>
+                    
+
+                  </div> -->
+                </footer>
+
+        
+              </div></a>  </div>
+              
+                  {% endfor %}
+              </div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+</html>

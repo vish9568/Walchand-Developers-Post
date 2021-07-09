@@ -1,0 +1,28 @@
+{% extends my_template %} {% block body %} {% if profile %}
+<script>
+  document.getElementById("myProfile").src = "{{profile.url}}";
+  console.log("{{profile}}");
+</script>
+{% endif %} {% if notifications %}
+<script>
+  document.getElementById("notification").innerText = "{{notifications}}";
+  //   console.log("{{profile}}");
+</script>
+{% endif %} {{notifications}} {% endblock %}
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile page</h1>
+    <h2>Welcome {{name}}</h2>
+{% if messages %}
+    {% for message in messages %}
+    <small {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</small>
+    {% endfor %}
+{% endif %}
+<a href="{% url 'logout' %}">Logout</a>
+</body>
+</html> -->
